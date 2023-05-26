@@ -6,5 +6,11 @@ Será feito um cliente em React e um servidor Node, a comunicação será rest, 
 
 ## Tecnologias
 ### Front
-- [React](https://react.dev/)
-- [Ant design](https://ant.design/)
+- [React](https://react.dev/): framework consolidado para desenvolvimento web.
+- [Ant design](https://ant.design/): biblioteca para auxiliar no desenvolvimento com componentes prontos.
+
+### Back
+- [Node.js](https://nodejs.org/): Ótimo para um ambiente escalável, traz maior produtividade e leveza.
+
+### Banco de dados
+- [Postgres](https://www.postgresql.org/): Escolhemos este BD visando uma futura escalabilidade do projeto.
