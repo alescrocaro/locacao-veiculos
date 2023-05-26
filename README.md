@@ -16,6 +16,8 @@ Será feito um cliente em React e um servidor Node, a comunicação será rest, 
 
 ### Back
 - [Node.js](https://nodejs.org/): Ótimo para um ambiente escalável, traz maior produtividade e leveza.
+- [Prisma](https://www.prisma.io/): ORM para facilitar a experiência do desenvolvedor para se comunicar com o BD.
+- [Insomnia](https://docs.insomnia.rest/): O desenvolvimento será "backend first", então utilizaremos esta ferramenta para realizar os testes necessários nas rotas.
 
 ### Banco de dados
 - [Postgres](https://www.postgresql.org/): Escolhemos este BD visando uma futura escalabilidade do projeto.
