@@ -21,3 +21,6 @@ Será feito um cliente em React e um servidor Node, a comunicação será rest, 
 
 ### Banco de dados
 - [Postgres](https://www.postgresql.org/): Escolhemos este BD visando uma futura escalabilidade do projeto.
+
+### Notificações
+- Pretendemos fazer um serviço de notificações utilizando [Supabase](https://supabase.com/) para fazer push notifications ao ser feito/aceito um pedido de locação.
