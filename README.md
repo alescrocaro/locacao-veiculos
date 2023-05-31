@@ -24,3 +24,7 @@ Será feito um cliente em React e um servidor Node, a comunicação será rest, 
 
 ### Notificações
 - Pretendemos fazer um serviço de notificações utilizando [Supabase](https://supabase.com/) para fazer push notifications ao ser feito/aceito um pedido de locação.
+
+
+### Aula 30/05 - 21h20 a 23h
+Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele
