@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-const routes = require('./routes');
 
-const app = express();
+const server = require('./routes/server.js')
 const pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
@@ -13,11 +12,8 @@ const pool = new Pool({
 });
 
 app.use(cors());
-app.use(express.json());
 app.use((req, res, next) => {
   req.db = pool; // adicionando a instância do pool ao objeto request para facilitar o acesso ao banco de dados nas rotas
   next();
 });
-app.use(routes);
-
-app.listen(3333);
+server.listen(3333, () => console.log(`Server rodando na porta 3333`));

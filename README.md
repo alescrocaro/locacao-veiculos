@@ -20,11 +20,10 @@ Será feito um cliente em React e um servidor Node, a comunicação será rest, 
 - [Insomnia](https://docs.insomnia.rest/): O desenvolvimento será "backend first", então utilizaremos esta ferramenta para realizar os testes necessários nas rotas.
 
 ### Banco de dados
-- [Postgres](https://www.postgresql.org/): Escolhemos este BD visando uma futura escalabilidade do projeto.
-
-### Notificações
-- Pretendemos fazer um serviço de notificações utilizando [Supabase](https://supabase.com/) para fazer push notifications ao ser feito/aceito um pedido de locação.
+- [Supabase](https://supabase.com/): Escolhemos este banco de dados por ser uma plataforma projetada para ser escalável. Além disso, pretendemos fazer um serviço de notificações para fazer push notifications ao ser feito/aceito um pedido de locação.
 
 
+<!-- 
 ### Aula 30/05 - 21h20 a 23h
-Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele
+Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele 
+-->
