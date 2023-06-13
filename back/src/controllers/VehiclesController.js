@@ -62,9 +62,25 @@ async function deleteVehicle(req, res, next) {
   }
 }
 
+async function getVehicle(req, res, next) {
+  console.log('finding vehicle by id...');
+  try {
+    const { id } = req.params;
+    
+    const result = await connection.findVehicleById(id);
+
+    res.status(200).json(result);
+  } catch (err) {
+    const error = new Error(err);
+    error.status = 400;
+    next(error);
+  }
+}
+
 module.exports = {
   createVehicle,
   index,
   updateVehicle,
   deleteVehicle,
+  getVehicle,
 };

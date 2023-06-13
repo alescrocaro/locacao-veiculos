@@ -30,9 +30,17 @@ async function deleteVehicle (id) {
         .eq('id', id)
 };
 
+async function findVehicleById (id) {
+    return await supabase
+        .from('VEHICLE')
+        .select('*')
+        .eq('id', id);
+}
+
 module.exports = {
     createVehicle,
     getVehicles,
     updateVehicle,
     deleteVehicle,
+    findVehicleById,
 }

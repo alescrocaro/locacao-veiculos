@@ -9,5 +9,7 @@ routes.get('/vehicles', VehiclesController.index);
 routes.put('/vehicles/:id', VehiclesController.updateVehicle)
 routes.delete('/vehicles/:id', VehiclesController.deleteVehicle)
 
+routes.get('/vehicles/:id', VehiclesController.getVehicle);
+
 
 module.exports = routes;
