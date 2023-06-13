@@ -4,6 +4,7 @@ const routes = express.Router();
 
 const VehiclesController = require('../controllers/VehiclesController');
 const UsersController = require('../controllers/UsersController');
+const LoginController = require('../controllers/LoginController');
 
 // VEHICLE
 routes.post('/vehicles', VehiclesController.createVehicle);
@@ -21,6 +22,9 @@ routes.put('/users/:id', UsersController.updateUser)
 routes.delete('/users/:id', UsersController.deleteUser)
 
 routes.get('/users/:id', UsersController.getUser);
+
+// LOGIN
+routes.post('/login', LoginController.login);
 
 
 

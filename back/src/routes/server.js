@@ -9,11 +9,13 @@ server.use(routes);
 server.use((req, res, next) => {
   const error = new Error('Path not found');
   error.status = 404;
+  console.log('404')
   next(error);
 })
 
 // Catch errors
 server.use((error, req, res, next) => {
+  console.log('internal error')
   res.status(error.status || 500)
      .json({error: error.message});
 })
