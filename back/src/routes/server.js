@@ -7,7 +7,7 @@ server.use(routes)
 
 // 404
 server.use((req, res, next) => {
-  const error = new Error('Caminho não encontrado.')
+  const error = new Error('Path not found')
   error.status = 404
   next(error);
 })
