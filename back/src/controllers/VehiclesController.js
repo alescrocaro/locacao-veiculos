@@ -1,4 +1,5 @@
 const connection = require('../service/vehicle');
+const { v4: uuidv4 } = require('uuid');
 
 async function createVehicle(req, res) {
   console.log('creating vehicle...');
@@ -6,6 +7,7 @@ async function createVehicle(req, res) {
   try {
     const data = req.body;
     console.log(req.body);
+    data.id = uuidv4();
     const result = await connection.createVehicle(data);
 
     res.status(201).json(result);
