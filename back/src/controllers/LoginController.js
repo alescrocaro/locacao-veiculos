@@ -11,7 +11,7 @@ async function login (req, res, next) {
     try {
         const db_user = await supabase
             .from('USER')
-            .select('')
+            .select('*')
             .eq('email', email);
         
         console.log('db_user', db_user);

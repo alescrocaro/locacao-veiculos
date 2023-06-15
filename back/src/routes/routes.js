@@ -5,10 +5,11 @@ const routes = express.Router();
 const VehiclesController = require('../controllers/VehiclesController');
 const UsersController = require('../controllers/UsersController');
 const LoginController = require('../controllers/LoginController');
+const AuthMiddleware = require('../middlewares/middleware');
 
 // VEHICLE
 routes.post('/vehicles', VehiclesController.createVehicle);
-routes.get('/vehicles', VehiclesController.index);
+routes.get('/vehicles', AuthMiddleware, VehiclesController.index);
 routes.put('/vehicles/:id', VehiclesController.updateVehicle)
 routes.delete('/vehicles/:id', VehiclesController.deleteVehicle)
 
