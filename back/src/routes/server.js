@@ -9,7 +9,7 @@ server.use(routes);
 server.use((req, res, next) => {
   const error = new Error('Path not found');
   error.status = 404;
-  console.log('404')
+  console.log('error 404')
   next(error);
 })
 

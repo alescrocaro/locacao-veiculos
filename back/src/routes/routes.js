@@ -2,10 +2,10 @@ const express = require('express');
 
 const routes = express.Router();
 
-const VehiclesController = require('../controllers/VehiclesController');
-const UsersController = require('../controllers/UsersController');
-const LoginController = require('../controllers/LoginController');
-const AuthMiddleware = require('../middlewares/middleware');
+const VehiclesController = require('../Controllers/VehiclesController');
+const UsersController = require('../Controllers/UsersController');
+const LoginController = require('../Controllers/LoginController');
+const AuthMiddleware = require('../Middlewares/middleware');
 
 // VEHICLE
 routes.post('/vehicles', VehiclesController.createVehicle);
