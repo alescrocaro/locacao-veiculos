@@ -8,19 +8,19 @@ const LoginController = require('../Controllers/LoginController');
 const AuthMiddleware = require('../Middlewares/middleware');
 
 // VEHICLE
-routes.post('/vehicles', VehiclesController.createVehicle);
-routes.get('/vehicles', AuthMiddleware, VehiclesController.index);
-routes.put('/vehicles/:id', VehiclesController.updateVehicle)
-routes.delete('/vehicles/:id', VehiclesController.deleteVehicle)
+routes.post('/vehicles', AuthMiddleware, VehiclesController.createVehicle);
+routes.get('/vehicles', VehiclesController.index);
+routes.put('/vehicles/:id', AuthMiddleware, VehiclesController.updateVehicle)
+routes.delete('/vehicles/:id', AuthMiddleware, VehiclesController.deleteVehicle)
 
 routes.get('/vehicles/:id', VehiclesController.getVehicle);
 
 
 // USER 
 routes.post('/users', UsersController.createUser);
-routes.get('/users', UsersController.index);
-routes.put('/users/:id', UsersController.updateUser)
-routes.delete('/users/:id', UsersController.deleteUser)
+routes.get('/users', AuthMiddleware, UsersController.index);
+routes.put('/users/:id', AuthMiddleware, UsersController.updateUser)
+routes.delete('/users/:id', AuthMiddleware, UsersController.deleteUser)
 
 routes.get('/users/:id', UsersController.getUser);
 
