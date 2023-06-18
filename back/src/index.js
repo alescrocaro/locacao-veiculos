@@ -2,7 +2,5 @@ const cors = require('cors');
 
 const server = require('./routes/server.js')
 
-server.use(cors());
-
 
 server.listen(3333, () => console.log(`Server rodando na porta 3333`));

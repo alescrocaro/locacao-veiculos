@@ -11,7 +11,6 @@ async function login (req, res, next) {
     
     try {
         const db_user = await connection.findUserByFilters('email', email);
-        console.log(db_user)
         
         console.log('db_user', db_user);
 
