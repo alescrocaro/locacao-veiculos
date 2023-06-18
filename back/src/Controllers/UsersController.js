@@ -7,20 +7,40 @@ async function createUser(req, res, next) {
 
   try {
     const salt_rounds = 10;
-    const data = req.body;
+    const userData = req.body;
+    userData.id = uuidv4();
+    
+    if (
+      !userData.document_number || 
+      !userData.email|| 
+      !userData.full_name || 
+      !userData.password || 
+      !userData.phone_number
+    ) {
+      const error = new Error('Bad User Input');
+      error.status = 400;
+      next(error);
+      return;
+    }
 
-    // try {
-    data.password = await bcrypt.hash(data.password, salt_rounds);
+    console.log('antes oldUser');
+    const oldUser = await connection.findUserByFilters(['document_number','email'], userData.document_number);
+    console.log(oldUser);
+    if (oldUser.data && oldUser.data[0] && oldUser.data[0].deleted_at) {
+      const error = new Error('User already exists');
+      error.status = 400;
+      next(error);
+      return;
+    }
+    
 
-    data.id = uuidv4();
-    const result = await connection.createUser(data);
+
+    if (!userData.password) userData.password = await bcrypt.hash(userData.password, salt_rounds);
+    const result = await connection.createUser(userData);
+    console.log(result);
+    // res.data = result
 
     res.status(201).json(result);
-    // } catch (err) {
-      // const error = new Error(err);
-      // error.status = 500;
-      // next(error);
-    // }
   } catch (err) {
     const error = new Error(err);
     error.status = 400;
@@ -62,6 +82,14 @@ async function deleteUser(req, res, next) {
 
   try {
     const { id } = req.params;
+    const user = await connection.findUserById(id);
+    if (!user.data[0]) {
+      const error = new Error('User not found');
+      error.status = 400;
+      next(error);
+      return;
+    }
+    
     const User = await connection.deleteUser(id);
 
     res.status(200).json(User);
