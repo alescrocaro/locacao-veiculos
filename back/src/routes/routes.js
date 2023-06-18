@@ -5,7 +5,7 @@ const routes = express.Router();
 const VehiclesController = require('../Controllers/VehiclesController');
 const UsersController = require('../Controllers/UsersController');
 const LoginController = require('../Controllers/LoginController');
-const AuthMiddleware = require('../Middlewares/middleware');
+const AuthMiddleware = require('../Middlewares/authMiddleware');
 
 // VEHICLE
 routes.post('/vehicles', AuthMiddleware, VehiclesController.createVehicle);

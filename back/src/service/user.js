@@ -7,7 +7,8 @@ const supabase = createClient(process.env.SUPABASEURL, process.env.SUPABASEKEY);
 async function createUser (data) {
     return await supabase
         .from('USER')
-        .insert([data]);
+        .insert([data])
+        .select();
 };
 
 async function getUsers () {
@@ -21,6 +22,7 @@ async function updateUser (id, data) {
         .from('USER')
         .update(data)
         .eq('id', id)
+        .select();
 };
 
 async function deleteUser (id) {
@@ -28,6 +30,7 @@ async function deleteUser (id) {
         .from('USER')
         .delete()
         .eq('id', id)
+        .select('id', id);
 };
 
 async function findUserById (id) {
@@ -37,10 +40,18 @@ async function findUserById (id) {
         .eq('id', id);
 }
 
+async function findUserByFilters (filters, target) {
+    return await supabase
+        .from('USER')
+        .select('*')
+        .eq(filters, target);
+}
+
 module.exports = {
     createUser,
     getUsers,
     updateUser,
     deleteUser,
     findUserById,
+    findUserByFilters,
 }

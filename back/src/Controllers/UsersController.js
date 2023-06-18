@@ -35,7 +35,7 @@ async function createUser(req, res, next) {
     
 
 
-    if (!userData.password) userData.password = await bcrypt.hash(userData.password, salt_rounds);
+    userData.password = await bcrypt.hash(userData.password, salt_rounds);
     const result = await connection.createUser(userData);
     console.log(result);
     // res.data = result
@@ -89,7 +89,7 @@ async function deleteUser(req, res, next) {
       next(error);
       return;
     }
-    
+
     const User = await connection.deleteUser(id);
 
     res.status(200).json(User);
