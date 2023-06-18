@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const connection = require('../service/user');
 require('dotenv').config();
 
 const { createClient } = require('@supabase/supabase-js');
@@ -9,15 +10,13 @@ async function login (req, res, next) {
     const { email, password } = req.body;
     
     try {
-        const db_user = await supabase
-            .from('USER')
-            .select('*')
-            .eq('email', email);
+        const db_user = await connection.findUserByFilters('email', email);
+        console.log(db_user)
         
         console.log('db_user', db_user);
 
-        if (!db_user.data) {
-            const error = new Error(db_user.error);
+        if (!db_user.data[0]) {
+            const error = new Error('User not found');
             error.status = 400;
             next(error);
             return;
