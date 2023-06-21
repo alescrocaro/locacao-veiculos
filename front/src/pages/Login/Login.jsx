@@ -64,7 +64,7 @@ const Login = () => {
           </Button>
         </Form.Item>
         <div>
-          <p>Não possui conta? <a href="/">Cadastre-se</a></p>
+          <p>Não possui conta? <Button type='link'>Cadastre-se</Button></p>
         </div>
       </Form>
     </div>
