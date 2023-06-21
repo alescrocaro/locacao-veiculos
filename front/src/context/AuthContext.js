@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
 import { api } from '../services/api';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 export const TokenContext = createContext();
 
@@ -13,26 +13,35 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const recoveredUser = decode(token);
 
-    if (recoveredUser && token) {
-      setUser(recoveredUser);
-      api.defaults.headers.authorization = `Bearer ${token}`;
+    if (token) {
+      const { id } = jwtDecode(token);
+      
+      const fetchUser = async (id) => {
+        return await api.get(`/users/${id}`);
+      }
+      
+      fetchUser(id)
+        .then(({ data }) => {
+          notification.success({
+            message: 'Sessão recuperada'
+          })
+          console.log('recoveredUser', data)
+
+          setUser(data);
+          navigate('/veiculos')
+          api.defaults.headers.authorization = `Bearer ${token}`;
+        })
+        .catch(err => {
+          notification.error({
+            message: 'Erro recuperando sessão'
+          });
+          navigate('/login');
+          localStorage.setItem('token', '');
+        });    
     }
-
     setLoading(false);
   }, []);
-
-  const decode = token => {
-    try {
-      const data = jwt_decode(token);
-
-      console.log('dentrodecode', data);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleLogin = async (email, password) => {
 	  setLoading(true);
@@ -42,8 +51,9 @@ export function AuthProvider({ children }) {
 
       const token = response.data.token;
 
-      const loggedUser = decode(token);
-      setUser(loggedUser);
+      // const loggedUserId = decode(token);
+      // console.log(loggedUserId)
+      setUser(response.data.user);
 
       localStorage.setItem('token', JSON.stringify(token));
 
@@ -52,11 +62,11 @@ export function AuthProvider({ children }) {
       notification.success({
         message: 'Logado com sucesso',
       })
-      navigate('/');
+      navigate('/veiculos');
       setLoading(false);
     } catch (error) {
       console.log(error);
-      const errorMessage = error.response.data.error;
+      const errorMessage = error.response.data.error ?? 'Error';
       console.log(errorMessage);
       notification.error({
         message: errorMessage,
@@ -76,14 +86,13 @@ export function AuthProvider({ children }) {
     navigate('/login');
   };
 
-  console.log('aqui')
-
   return (
     <TokenContext.Provider
       value={{
         authenticated: !!user,
         user,
         loading,
+        setLoading,
         handleLogin,
         handleLogout
       }}
