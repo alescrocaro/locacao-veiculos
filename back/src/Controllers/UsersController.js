@@ -37,10 +37,8 @@ async function createUser(req, res, next) {
 
     userData.password = await bcrypt.hash(userData.password, salt_rounds);
     const result = await connection.createUser(userData);
-    console.log(result);
-    // res.data = result
 
-    res.status(201).json(result);
+    res.status(201).json(result.data[0]);
   } catch (err) {
     const error = new Error(err);
     error.status = 400;
@@ -106,8 +104,9 @@ async function getUser(req, res, next) {
     const { id } = req.params;
     
     const result = await connection.findUserById(id);
+    const user = result.data[0];
 
-    res.status(200).json(result);
+    res.status(200).json(user);
   } catch (err) {
     const error = new Error(err);
     error.status = 400;
