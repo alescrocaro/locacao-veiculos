@@ -3,13 +3,18 @@ import { UserOutlined } from '@ant-design/icons';
 import { useToken } from '../../context/AuthContext';
 
 
+
+
 const ProfileDropdown = () => {
-  const { handleLogout } = useToken();
+  const { user, handleLogout } = useToken();
+  console.log(user);
   
   const items = [
     {
-      label: <a onClick={handleLogout}>Sair</a>,
+      label: 'Sair',
       key: '0',
+      onClick: handleLogout
+
     },
   ];
 
@@ -19,13 +24,16 @@ const ProfileDropdown = () => {
         items,
       }}
     >
-      <UserOutlined 
-        style={{ 
-          fontSize: '40px', 
-          marginRight: '1rem', 
-          cursor: 'pointer'
-        }}
-      />
+    <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.6rem', color: 'white' }}>
+        {user?.nick_name ?? ''}
+        <UserOutlined 
+          style={{ 
+            fontSize: '40px', 
+            marginRight: '1rem', 
+            cursor: 'pointer',
+          }}
+        />
+      </div>
     </Dropdown>
 )};
 
