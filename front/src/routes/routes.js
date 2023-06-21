@@ -12,14 +12,14 @@ const RoutesProvider = () => {
     if (!authenticated){
       navigate('/login');
     } else {
-      navigate('/')
+      navigate('/veiculos')
     }
   }, [authenticated]);
 
   return (
 
     <Routes>
-    <Route exact path="/" element={<Home />} />
+    <Route exact path="/veiculos" element={<Home />} />
     <Route exact path="/login" element={<Login />} />
     {/* <Route exact path="/*" element={<NotFound />} /> */}
   </Routes>
