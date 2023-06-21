@@ -7,13 +7,19 @@ const Layout = ({ children }) => {
 	return (
 		<>
 			<div className="header">
-				<a href='/'>
+				<a href='/veiculos'>
 					<img src={logo} alt="LOGO" width={80} />
 				</a>
 				<ProfileDropdown />
 				
 			</div>
-			{children}
+			<div
+				style={{
+					margin: '50px'
+				}}
+			>
+				{children}
+			</div>
 		</>
 	)
 }
