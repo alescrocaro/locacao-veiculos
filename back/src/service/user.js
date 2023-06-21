@@ -8,13 +8,14 @@ async function createUser (data) {
     return await supabase
         .from('USER')
         .insert([data])
-        .select();
+        .select('id, full_name, nick_name, email, document_number, phone_number, type');
 };
 
 async function getUsers () {
     return await supabase
         .from('USER')
-        .select('*');
+        .select('id, full_name, nick_name, email, document_number, phone_number, type')
+        .removeColumn('password');
 };
 
 async function updateUser (id, data) {
@@ -22,7 +23,7 @@ async function updateUser (id, data) {
         .from('USER')
         .update(data)
         .eq('id', id)
-        .select();
+        .select('id, full_name, nick_name, email, document_number, phone_number, type');
 };
 
 async function deleteUser (id) {
@@ -36,7 +37,7 @@ async function deleteUser (id) {
 async function findUserById (id) {
     return await supabase
         .from('USER')
-        .select('*')
+        .select('id, full_name, nick_name, email, document_number, phone_number, type')
         .eq('id', id);
 }
 
