@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const connection = require('../service/user');
-require('dotenv').config();
+const authConfig = require('../config/auth');
 
 const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(process.env.SUPABASEURL, process.env.SUPABASEKEY);
@@ -31,13 +33,15 @@ async function login (req, res, next) {
             return;
         }
 
+        const payload = { "id": db_user.data[0].id }
+        const token = jwt.sign(
+            payload,
+            authConfig.secret,
+            { expiresIn: authConfig.expireIn }
+        )
         res.status(200).json({
-            user: db_user,
-            token: jwt.sign(
-                    { id: db_user.id },
-                    process.env.JWTKEY,
-                    { expiresIn: process.env.JWTEXPIRESIN }
-                )
+            user: db_user.data[0],
+            token: token
         })
     } catch (err) {
         const error = new Error(err);
