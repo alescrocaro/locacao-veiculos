@@ -1,11 +1,13 @@
+import { useEffect, Suspense } from "react";
 import { useNavigate, Route, Routes } from "react-router-dom";
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
 import { useToken } from "../context/AuthContext";
-import { useEffect } from "react";
+import { Layout } from "antd";
+import LoadingPage from "../pages/loadingPage";
 
 const RoutesProvider = () => {
-  const { authenticated } = useToken();
+  const { authenticated, loading } = useToken();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,13 +19,13 @@ const RoutesProvider = () => {
   }, [authenticated]);
 
   return (
-
-    <Routes>
-    <Route exact path="/veiculos" element={<Home />} />
-    <Route exact path="/login" element={<Login />} />
-    {/* <Route exact path="/*" element={<NotFound />} /> */}
-  </Routes>
+    <Suspense fallback={<LoadingPage />}>
+      <Routes>
+        <Route exact path="/veiculos" element={<Home />} />
+        <Route exact path="/login" element={<Login />} />
+      </Routes>
+    </Suspense>
   );
-}
+  }
 
 export default RoutesProvider;

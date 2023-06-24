@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Table } from "antd";
-import { useToken } from "../../context/AuthContext";
+import { useToken } from "../../../context/AuthContext";
 
 const VehiclesTable = ({ vehicles, loading }) => {
 
@@ -60,6 +60,7 @@ const VehiclesTable = ({ vehicles, loading }) => {
       columns={columns}
       scroll={{ x: true }}
       loading={loading}
+      rowKey={row => row.id}
     />
   )
 }

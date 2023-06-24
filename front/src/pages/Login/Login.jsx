@@ -16,9 +16,7 @@ const Login = () => {
   return (
     <div className='container'>
       <Form
-        initialValues={{ remember: true }}
         onFinish={handleSubmit}
-        className='form'
       >
         <h1> 
           Faça o login
