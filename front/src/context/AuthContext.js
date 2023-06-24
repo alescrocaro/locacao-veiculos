@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode';
 export const TokenContext = createContext();
 
 export function AuthProvider({ children }) {
+  console.log('Auth Provider');
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -49,11 +50,9 @@ export function AuthProvider({ children }) {
       const response = await api.post('/login', { email, password });
       console.log('response', response);
 
-      const token = response.data.token;
+      const token = response?.data.token;
 
-      // const loggedUserId = decode(token);
-      // console.log(loggedUserId)
-      setUser(response.data.user);
+      setUser(response?.data.user);
 
       localStorage.setItem('token', JSON.stringify(token));
 
@@ -66,7 +65,7 @@ export function AuthProvider({ children }) {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      const errorMessage = error.response.data.error ?? 'Error';
+      const errorMessage = error.response?.data.error ?? 'Error';
       console.log(errorMessage);
       notification.error({
         message: errorMessage,

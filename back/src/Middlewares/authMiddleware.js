@@ -1,10 +1,11 @@
+require('dotenv').config();
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth');
 
 const AuthMiddleware = async (req, res, next) => {
     const auth = req.headers.authorization;
-    console.log('auth', auth);
-
+    
     if (!auth) {
         const error = new Error();
         error.status = 401;
@@ -12,22 +13,27 @@ const AuthMiddleware = async (req, res, next) => {
         next(error);
         return;
     }
-
+    
     const [, token] = auth.split(' ');
-    console.log('token', token);
+    const serializedToken = token.substring(1,token.length -1)
 
     try {
-        const decoded = await promisify(jwt.verify)(token, process.env.JWTKEY)
+        try {
+            const decoded = await promisify(jwt.verify)(serializedToken, authConfig.secret);
+            console.log(typeof serializedToken)
+            console.log(typeof authConfig.secret)
 
-        console.log(decoded);
-
-        if(!decoded) {
-            const error = new Error();
-            error.status = 401;
-            error.message = 'This token is expired';
-            next(error);
-        } else {
+            if(!decoded) {
+                const error = new Error();
+                error.status = 401;
+                error.message = 'This token is expired';
+                next(error);
+            } 
             next();
+        } catch (err) {
+            const error = new Error(err);
+            error.status = 400;
+            next(error);
         }
     } catch (err) {
         const error = new Error(err);

@@ -37,7 +37,7 @@ async function login (req, res, next) {
         const token = jwt.sign(
             payload,
             authConfig.secret,
-            { expiresIn: authConfig.expireIn }
+            { expiresIn: 3600 } // 1 hour
         )
         res.status(200).json({
             user: db_user.data[0],

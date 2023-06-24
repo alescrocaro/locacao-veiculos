@@ -9,7 +9,7 @@ const AuthMiddleware = require('../Middlewares/authMiddleware');
 
 // VEHICLE
 routes.post('/vehicles', AuthMiddleware, VehiclesController.createVehicle);
-routes.get('/vehicles', VehiclesController.index);
+routes.get('/vehicles', AuthMiddleware, VehiclesController.index);
 routes.put('/vehicles/:id', AuthMiddleware, VehiclesController.updateVehicle)
 routes.delete('/vehicles/:id', AuthMiddleware, VehiclesController.deleteVehicle)
 

@@ -7,7 +7,6 @@ import { useToken } from '../../context/AuthContext';
 
 const ProfileDropdown = () => {
   const { user, handleLogout } = useToken();
-  console.log(user);
   
   const items = [
     {

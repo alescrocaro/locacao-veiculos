@@ -3,5 +3,8 @@ body {
     min-height: 100vh;
     min-width: 100vw;
     background-color: #f0f0f0;
-    font-family: Gill Sans Extrabold, sans-serif
+    font-family: Gill Sans Extrabold, sans-serif;
+    .ant-btn-primary {
+        background-color: rgb(4,23,115);
+    }
 }

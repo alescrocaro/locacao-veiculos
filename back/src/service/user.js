@@ -7,7 +7,7 @@ const supabase = createClient(process.env.SUPABASEURL, process.env.SUPABASEKEY);
 async function createUser (data) {
     return await supabase
         .from('USER')
-        .insert([data])
+        .insert(data)
         .select('id, full_name, nick_name, email, document_number, phone_number, type');
 };
 

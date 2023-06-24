@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
-import { AuthProvider, useToken } from './context/AuthContext';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import RoutesProvider from './routes/routes';
 
 
@@ -8,9 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <RoutesProvider>
-
-        </RoutesProvider>
+        <RoutesProvider />
       </AuthProvider>
     </BrowserRouter>
   );
