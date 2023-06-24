@@ -7,7 +7,7 @@ server.use(express.json());
 server.use(cors({ origin: 'http://localhost:3000' }))
 server.use(routes);
 
-// 404
+// 404 - captures any route that does not match with one of routes file ./routes.js
 server.use((req, res, next) => {
   const error = new Error('Path not found');
   error.status = 404;
@@ -15,7 +15,7 @@ server.use((req, res, next) => {
   next(error);
 })
 
-// Catch errors
+// Catch errors (when next(error) is used, this middleware is called)
 server.use((error, req, res, next) => {
   console.log('internal error')
   res.status(error.status || 500)

@@ -24,9 +24,10 @@ async function createUser(req, res, next) {
     }
 
     console.log('antes oldUser');
-    const oldUser = await connection.findUserByFilters(['document_number','email'], userData.document_number);
+    const { data: oldUsers } = await connection.findUserByFilters(['document_number','email'], userData.document_number);
+    const oldUser = oldUsers ? oldUsers[0] : null;
     console.log(oldUser);
-    if (oldUser.data && oldUser.data[0] && oldUser.data[0].deleted_at) {
+    if (oldUser) {
       const error = new Error('User already exists');
       error.status = 400;
       next(error);

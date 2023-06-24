@@ -14,8 +14,7 @@ async function createUser (data) {
 async function getUsers () {
     return await supabase
         .from('USER')
-        .select('id, full_name, nick_name, email, document_number, phone_number, type')
-        .removeColumn('password');
+        .select('id, full_name, nick_name, email, document_number, phone_number, type');
 };
 
 async function updateUser (id, data) {
