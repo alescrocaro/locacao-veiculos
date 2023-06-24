@@ -14,14 +14,15 @@ const RoutesProvider = () => {
     if (!authenticated){
       navigate('/login');
     } else {
-      navigate('/veiculos')
+      navigate('/home')
     }
   }, [authenticated]);
 
   return (
     <Suspense fallback={<LoadingPage />}>
       <Routes>
-        <Route exact path="/veiculos" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/rental-requests" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>
     </Suspense>

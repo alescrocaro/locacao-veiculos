@@ -30,12 +30,12 @@ export function AuthProvider({ children }) {
           console.log('recoveredUser', data)
 
           setUser(data);
-          navigate('/veiculos')
+          navigate('/home')
           api.defaults.headers.authorization = `Bearer ${token}`;
         })
         .catch(err => {
           notification.error({
-            message: 'Faça o login novamente'
+            message: 'Please, sign in'
           });
           navigate('/login');
           localStorage.setItem('token', '');
@@ -59,9 +59,9 @@ export function AuthProvider({ children }) {
       api.defaults.headers.authorization = `Bearer ${token}`;
 
       notification.success({
-        message: 'Logado com sucesso',
+        message: 'Signed in successfully',
       })
-      navigate('/veiculos');
+      navigate('/home');
       setLoading(false);
     } catch (error) {
       console.log(error);

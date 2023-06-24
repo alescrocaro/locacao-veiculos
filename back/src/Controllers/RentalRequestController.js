@@ -46,6 +46,7 @@ async function createRentalRequest(req, res, next) {
       next(error);
       return;
     }
+    data.vehicle = vehicle.name;
 
 
 
@@ -66,6 +67,7 @@ async function createRentalRequest(req, res, next) {
       next(error);
       return;
     }
+    data.lessor_name = lessor.name;
 
 
 
@@ -86,6 +88,7 @@ async function createRentalRequest(req, res, next) {
       next(error);
       return;
     }
+    data.lessee_name = lessee.name;
   
 
 
@@ -110,6 +113,8 @@ async function index(req, res, next) {
   console.log('reading all Rental requests...');    
   try {
     const result = await connection.getRentalRequests();
+
+
     
     res.status(200).json(result);
   } catch (err) {
@@ -184,7 +189,7 @@ async function deleteRentalRequest(req, res, next) {
   }
 }
 
-async function getRentalRequests(req, res, next) {
+async function getRentalRequest(req, res, next) {
   console.log('finding User by id...');
   try {
     const { id } = req.params;
@@ -205,5 +210,5 @@ module.exports = {
   index,
   updateRentalRequestStatus,
   deleteRentalRequest,
-  getRentalRequests,
+  getRentalRequest,
 };
