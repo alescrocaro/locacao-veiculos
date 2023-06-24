@@ -21,6 +21,7 @@ async function updateVehicle (id, data) {
         .from('VEHICLE')
         .update(data)
         .eq('id', id)
+        .select();
 };
 
 async function deleteVehicle (id) {

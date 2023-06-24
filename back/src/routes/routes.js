@@ -5,6 +5,7 @@ const routes = express.Router();
 const VehiclesController = require('../Controllers/VehiclesController');
 const UsersController = require('../Controllers/UsersController');
 const LoginController = require('../Controllers/LoginController');
+const RentalRequestController = require('../Controllers/RentalRequestController');
 const AuthMiddleware = require('../Middlewares/authMiddleware');
 
 // VEHICLE
@@ -27,6 +28,12 @@ routes.get('/users/:id', UsersController.getUser);
 // LOGIN
 routes.post('/login', LoginController.login);
 
+
+// RENTAL REQUEST 
+routes.post('/rental-request', AuthMiddleware, RentalRequestController.createRentalRequest);
+routes.get('/rental-request', AuthMiddleware, RentalRequestController.index);
+routes.put('/rental-request/:id', AuthMiddleware, RentalRequestController.updateRentalRequestStatus)
+routes.delete('/rental-request/:id', AuthMiddleware, RentalRequestController.deleteRentalRequest)
 
 
 module.exports = routes;
