@@ -24,9 +24,9 @@ export function AuthProvider({ children }) {
       
       fetchUser(id)
         .then(({ data }) => {
-          notification.success({
-            message: 'Sessão recuperada'
-          })
+          // notification.success({
+          //   message: 'Sessão recuperada'
+          // })
           console.log('recoveredUser', data)
 
           setUser(data);
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
         })
         .catch(err => {
           notification.error({
-            message: 'Erro recuperando sessão'
+            message: 'Faça o login novamente'
           });
           navigate('/login');
           localStorage.setItem('token', '');
