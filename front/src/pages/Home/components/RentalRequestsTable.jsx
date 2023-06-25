@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Popconfirm, Table, notification } from "antd";
-import { useToken } from "../../../context/AuthContext";
 import moment from "moment";
 import { api } from "../../../services/api";
+import { useRealtime, useSubscription } from 'react-supabase'
+import { useToken } from "../../../context/AuthContext";
 
-const RentalRequestsTable = ({ rentalRequests, setRentalRequests, loading }) => {
+
+const RentalRequestsTable = ({ rentalRequests, setRentalRequests, setVehicles, loading }) => {
+	const { user } = useToken();
+
+  const [{ data, error, fetching }, reexecute] = useRealtime('RENTAL_REQUEST');
+  
+
   const handleAcceptRentalRequest = async (id) => {
     return await api.put(`/rental-request/${id}`, { accepted: true });
   }
@@ -50,7 +57,7 @@ const RentalRequestsTable = ({ rentalRequests, setRentalRequests, loading }) => 
             cancelText={'No'}
             onConfirm={() => {
               handleAcceptRentalRequest(record.id)
-                .then(() => {
+                .then(({ data: updatedRequest }) => {
                   notification.success({
                     message: 'Request accepted'
                   })
@@ -60,6 +67,13 @@ const RentalRequestsTable = ({ rentalRequests, setRentalRequests, loading }) => 
                     }
                     return data;
                   }))
+                  const fetchVehicles = async () => {
+                    return await api.get('/vehicles',  {headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }});
+                  }
+                  fetchVehicles()
+                    .then(newVehicles => {
+                      setVehicles(newVehicles);
+                    })
                 })
                 .catch(() => {
                   notification.error({
@@ -79,31 +93,34 @@ const RentalRequestsTable = ({ rentalRequests, setRentalRequests, loading }) => 
           ' ',
           <>
             {!record.accepted && (
-            <Popconfirm
-              okText={'Yes'}
-              cancelText={'No'}
-              onConfirm={() => {
-                handleRejectRentalRequest(record.id)
-                  .then(() => {
-                    notification.success({
-                      message: 'Request rejected'
+              <Popconfirm
+                okText={'Yes'}
+                cancelText={'No'}
+                onConfirm={() => {
+                  handleRejectRentalRequest(record.id)
+                    .then(() => {
+                      notification.success({
+                        message: 'Request rejected'
+                      })
+                      console.log('removendo do stado')
+                      const newRentalRequests = rentalRequests.filter(data => data.id !== record.id);
+                      setRentalRequests(newRentalRequests)
                     })
-                    setRentalRequests(prevData => prevData.filter(data => data.id !== record.id))
-                  })
-                  .catch(() => {
-                    notification.error({
-                      message: 'Error rejecting request'
+                    .catch((err) => {
+                      console.log(err);
+                      notification.error({
+                        message: 'Error rejecting request'
+                      })
                     })
-                  })
-              }}
-              title={'Do you really want to accept the request?'}
-            >
-              <Button type='primary' danger>
-                Rejeitar
-              </Button>
-            </Popconfirm>
-          )}
-        </>
+                }}
+                title={'Do you really want to accept the request?'}
+              >
+                <Button type='primary' danger>
+                  Rejeitar
+                </Button>
+              </Popconfirm>
+            )}
+          </>
         ]
       }
     },
@@ -115,7 +132,7 @@ const RentalRequestsTable = ({ rentalRequests, setRentalRequests, loading }) => 
       dataSource={rentalRequests}
       columns={columns}
       scroll={{ x: true }}
-      loading={loading}
+      loading={loading || fetching}
       rowKey={row => row.id}
     />
   )

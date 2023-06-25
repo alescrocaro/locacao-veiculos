@@ -192,14 +192,30 @@ async function deleteRentalRequest(req, res, next) {
 }
 
 async function getRentalRequest(req, res, next) {
-  console.log('finding User by id...');
+  console.log('finding rental requests by id...');
   try {
     const { id } = req.params;
     
-    const result = await connection.findUserById(id);
-    const user = result.data[0];
+    const result = await connection.findRentalRequestById(id);
+    const rentalRequests = result.data[0];
 
-    res.status(200).json(user);
+    res.status(200).json(rentalRequests);
+  } catch (err) {
+    const error = new Error(err);
+    error.status = 400;
+    next(error);
+  }
+}
+
+async function getRentalRequestByUser(req, res, next) {
+  console.log('finding rental requests by user id...');
+  try {
+    const { id } = req.params;
+    
+    const result = await connection.findRentalRequestByFilters('lessee_id', id);
+    const rentalRequests = result.data[0];
+
+    res.status(200).json(rentalRequests);
   } catch (err) {
     const error = new Error(err);
     error.status = 400;
@@ -213,4 +229,5 @@ module.exports = {
   updateRentalRequestStatus,
   deleteRentalRequest,
   getRentalRequest,
+  getRentalRequestByUser,
 };

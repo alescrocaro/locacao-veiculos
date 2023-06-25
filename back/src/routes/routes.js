@@ -34,6 +34,7 @@ routes.post('/rental-request', AuthMiddleware, RentalRequestController.createRen
 routes.get('/rental-request', AuthMiddleware, RentalRequestController.index);
 routes.put('/rental-request/:id', AuthMiddleware, RentalRequestController.updateRentalRequestStatus)
 routes.delete('/rental-request/:id', AuthMiddleware, RentalRequestController.deleteRentalRequest)
+routes.get('rental-request/:id', AuthMiddleware, RentalRequestController.getRentalRequestByUser)
 
 
 module.exports = routes;

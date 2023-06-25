@@ -10,7 +10,11 @@ const Layout = ({ children }) => {
 				<a href='/home'>
 					<img src={logo} alt="LOGO" width={80} />
 				</a>
-				<ProfileDropdown />
+				<div style={{
+					display: 'flex'
+				}}>
+					<ProfileDropdown />
+				</div>
 				
 			</div>
 			<div

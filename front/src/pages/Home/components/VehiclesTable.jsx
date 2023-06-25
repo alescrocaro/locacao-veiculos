@@ -4,7 +4,7 @@ import { useToken } from "../../../context/AuthContext";
 import { api } from "../../../services/api";
 import moment from 'moment';
 
-const VehiclesTable = ({ vehicles, loading }) => {
+const VehiclesTable = ({ vehicles, setRentalRequests, loading }) => {
   const { user } = useToken();
   const handleMakeRentalRequest = async (record) => {
     const data = {
@@ -70,10 +70,11 @@ const VehiclesTable = ({ vehicles, loading }) => {
                     cancelText={'No'}
                     onConfirm={() => {
                       handleMakeRentalRequest(record)
-                        .then(() => {
+                        .then(({ data }) => {
                           notification.success({
                             message: 'Request made, await for the response'
                           })
+                          setRentalRequests(prevData => [data, ...prevData])
                         })
                         .catch(() => {
                           notification.error({
