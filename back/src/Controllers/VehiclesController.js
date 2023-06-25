@@ -10,7 +10,7 @@ async function createVehicle(req, res) {
     data.id = uuidv4();
     const result = await connection.createVehicle(data);
 
-    res.status(201).json(result);
+    res.status(200).json(result);
   } catch (err) {
     const error = new Error(err);
     error.status = 400;

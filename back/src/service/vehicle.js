@@ -7,7 +7,8 @@ const supabase = createClient(process.env.SUPABASEURL, process.env.SUPABASEKEY);
 async function createVehicle (data) {
     return await supabase
         .from('VEHICLE')
-        .insert([data]);
+        .insert(data)
+        .select();
 };
 
 async function getVehicles () {

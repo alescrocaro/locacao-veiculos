@@ -14,14 +14,13 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
     const values = form.getFieldsValue();
     console.log(values);
     setIsLoading(true);
-    createVehicle()
-      .then(response => {
-        const newVehicle = response.data;
-        console.log(newVehicle);
-        setVehicles(prevData => ({
+    createVehicle(values)
+      .then(({ data: response }) => {
+        const newVehicle = response.data[0];
+        setVehicles(prevData => ([
           newVehicle,
           ...prevData,
-        }));
+        ]));
         handleClose();
       })
       .catch(err => {
@@ -37,6 +36,7 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
   }
 
   const handleClose = () => {
+    console.log('handleClose')
     setIsVisible(false);
     form.resetFields();
   }
@@ -73,6 +73,28 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
                 name="color"
                 rules={[{ required: true }]}
                 label="Cor"
+              >
+                <Input
+                  disabled={isLoading}
+                />
+              </Form.Item>
+            </Col>
+            <Col lg={12} md={12} sm={12} xs={24}>
+              <Form.Item
+                name="plate"
+                rules={[{ required: true }]}
+                label="Placa"
+              >
+                <Input
+                  disabled={isLoading}
+                />
+              </Form.Item>
+            </Col>
+            <Col lg={12} md={12} sm={12} xs={24}>
+              <Form.Item
+                name="price_per_day"
+                rules={[{ required: true }]}
+                label="Preço por dia"
               >
                 <Input
                   disabled={isLoading}
