@@ -1,10 +1,12 @@
 import { Card, Col, Form, Input, Modal, Row, notification } from "antd";
 import React, { useState } from "react";
 import { api } from "../../../services/api";
+import { useToken } from "../../../context/AuthContext";
 
 const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
+  const { user } = useToken();
 
   const createVehicle = async (data) => {
     return await api.post('/vehicles', data);
@@ -12,11 +14,14 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
 
   const handleSubmit = () => {
     const values = form.getFieldsValue();
+    values['lessor_id'] = user.id;
     console.log(values);
     setIsLoading(true);
     createVehicle(values)
       .then(({ data: response }) => {
+        console.log(response)
         const newVehicle = response.data[0];
+        console.log(newVehicle)
         setVehicles(prevData => ([
           newVehicle,
           ...prevData,
