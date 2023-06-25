@@ -1,0 +1,553 @@
+---
+openapi: 3.0.0
+info:
+  title: Locacao de veículos
+  description: "This is a interface for rent vehicles [api](https://github.com/alescrocaro/locacao-veiculos/tree/main/back/).  You will need some keys to run it, so contact the maintainer."
+  contact:
+    email: alescrocaro@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/ALESCROCARO_1/locacao-veiculos/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: ""
+tags:
+- name: login
+- name: vehicle
+  description: Operations about vehicle
+- name: user
+  description: Operations about user
+- name: rentalRequest
+  description: Operations about rental request
+paths:
+  /login:
+    post:
+      tags:
+      - login
+      description: ' '
+      operationId: login
+      requestBody:
+        $ref: '#/components/requestBodies/Login'
+      responses:
+        "200":
+          description: returns token JWT
+        "400":
+          description: Bad user input (wrong password or user not found)
+  /vehicles:
+    get:
+      tags:
+      - vehicle
+      summary: Returns all vehicles
+      description: ' '
+      operationId: getVehicles
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleArray'
+        "400":
+          description: Bad user input
+    post:
+      tags:
+      - vehicle
+      summary: Create a vehicle
+      description: ' '
+      operationId: createVehicle
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      requestBody:
+        description: Create a vehicle
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+        "400":
+          description: Bad user input
+  /vehicles/{vehicleId}:
+    put:
+      tags:
+      - vehicle
+      summary: Update a vehicle
+      description: ' '
+      operationId: updateVehicle
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      - name: vehicleId
+        in: path
+        description: Vehicle id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Update a vehicle
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+        "400":
+          description: Bad user input
+    delete:
+      tags:
+      - vehicle
+      summary: Delete vehicle
+      description: ' '
+      operationId: deleteVehicle
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      - name: vehicleId
+        in: path
+        description: Vehicle id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              example:
+                id: string
+        "400":
+          description: Bad user input
+  /user:
+    get:
+      tags:
+      - user
+      summary: Return all users
+      description: ' '
+      operationId: getUsers
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserArray'
+        "400":
+          description: Bad user input
+    post:
+      tags:
+      - user
+      summary: Create a user
+      description: ' '
+      operationId: createUser
+      requestBody:
+        description: Create a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+        "400":
+          description: Bad user input | user already exists
+  /user/{userId}:
+    put:
+      tags:
+      - user
+      summary: Update a user
+      description: ' '
+      operationId: updateUser
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: User id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Update a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Bad user input
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      description: ' '
+      operationId: deleteUser
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      - name: userId
+        in: path
+        description: User id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              example:
+                id: string
+        "400":
+          description: Bad user input
+  /rental-request:
+    get:
+      tags:
+      - rentalRequest
+      summary: Returns all rentalRequests
+      description: ' '
+      operationId: getRentalRequest
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalRequestArray'
+        "500":
+          description: internal error
+    post:
+      tags:
+      - rentalRequest
+      summary: Create a rental request
+      description: ' '
+      operationId: createRentalRequest
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      requestBody:
+        description: Create a rental request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalRequest'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalRequest'
+        "400":
+          description: Bad user input
+        "411":
+          description: Vehicle does not exists
+        "412":
+          description: Vehicle is not available
+        "413":
+          description: Lessor does not exists
+        "414":
+          description: User type should be LESSOR
+        "415":
+          description: Lessee does not exist
+        "416":
+          description: User type should be LESSEE
+        "500":
+          description: internal server error
+  /rental-request/{rentalRequestId}:
+    put:
+      tags:
+      - rentalRequest
+      summary: Update a rentalRequest
+      description: ' '
+      operationId: updateRentalRequestId
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      - name: rentalRequestId
+        in: path
+        description: Rental request id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Update a rental request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalRequest'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalRequest'
+        "400":
+          description: Bad user input
+    delete:
+      tags:
+      - rentalRequest
+      summary: Delete rental request
+      description: ' '
+      operationId: deleteRentalRequest
+      parameters:
+      - name: token
+        in: header
+        description: token JWT
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Bearer token
+      - name: rentalRequestId
+        in: path
+        description: rental request id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              example:
+                id: string
+        "400":
+          description: Bad user input
+        "411":
+          description: rental request does not exist
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        full_name:
+          type: string
+        nick_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        document_number:
+          type: string
+        phone_numer:
+          type: string
+        type:
+          type: string
+      xml:
+        name: User
+    UserArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+    Login:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+      xml:
+        name: Login
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: string
+        plate:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        seats:
+          type: number
+        automatic:
+          type: boolean
+        fuel_type:
+          type: string
+        available:
+          type: boolean
+        price_per_day:
+          type: number
+        lessor_id:
+          type: string
+      xml:
+        name: Login
+    VehicleArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Vehicle'
+    RentalRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        lessor_id:
+          type: string
+        lessor_name:
+          type: string
+        lessee_id:
+          type: string
+        lessee_name:
+          type: string
+        vehicle_id:
+          type: string
+        vehicle:
+          type: string
+        rental_start:
+          type: string
+        rental_end:
+          type: string
+        accepted:
+          type: boolean
+      xml:
+        name: Login
+    RentalRequestArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/RentalRequest'
+  requestBodies:
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      required: true
+    Login:
+      description: User data needed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Login'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Login'
+      required: true
