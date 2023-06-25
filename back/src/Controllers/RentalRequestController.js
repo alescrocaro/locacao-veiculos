@@ -67,7 +67,7 @@ async function createRentalRequest(req, res, next) {
       next(error);
       return;
     }
-    data.lessor_name = lessor.name;
+    data.lessor_name = lessor.full_name;
 
 
 
@@ -88,7 +88,7 @@ async function createRentalRequest(req, res, next) {
       next(error);
       return;
     }
-    data.lessee_name = lessee.name;
+    data.lessee_name = lessee.full_name;
   
 
 
@@ -170,9 +170,10 @@ async function deleteRentalRequest(req, res, next) {
   try {
     const { id } = req.params;
     const { data: rentalRequests } = await connection.findRentalRequestById(id);
-    const rentalRequest = rentalRequests ? rentalRequest[0] : null;
+    const rentalRequest = rentalRequests ? rentalRequests[0] : null;
+    console.log('rentalRequest', rentalRequest);
 
-    if (rentalRequest) {
+    if (!rentalRequest) {
       const error = new Error('Rental request not found');
       error.status = 400;
       next(error);
@@ -180,6 +181,7 @@ async function deleteRentalRequest(req, res, next) {
     }
 
     const response = await connection.deleteRentalRequest(id);
+    console.log('response', response);
 
     res.status(200).json(response);
   } catch (err) {

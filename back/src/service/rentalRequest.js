@@ -26,6 +26,7 @@ async function updateRentalRequest (id, data) {
 };
 
 async function deleteRentalRequest (id) {
+    console.log('deleteRentalRequest');
     return await supabase
         .from('RENTAL_REQUEST')
         .delete()
@@ -34,6 +35,7 @@ async function deleteRentalRequest (id) {
 };
 
 async function findRentalRequestById (id) {
+    console.log('findRentalRequestById');
     return await supabase
         .from('RENTAL_REQUEST')
         .select()

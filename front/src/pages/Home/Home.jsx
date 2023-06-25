@@ -98,7 +98,11 @@ const Home = () => {
 				)}
 				{itemKey === 'rental-requests' && user?.type === 'LESSOR' && (
 					<Card title="Pedidos de aluguel">
-						<RentalRequestsTable rentalRequests={rentalRequests} loading={isLoading} />
+						<RentalRequestsTable 
+							rentalRequests={rentalRequests}
+							setRentalRequests={setRentalRequests}
+							loading={isLoading} 
+						/>
 					</Card>
 				)}
 			</Layout>
