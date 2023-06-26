@@ -1,3 +1,8 @@
+/** 
+ * trecho de código implementa a funcionalidade de login de usuários, 
+ * verificando suas credenciais e gerando um token de autenticação para 
+ * ser usado em requisições subsequentes.
+*/
 require('dotenv').config();
 
 const bcrypt = require('bcrypt');
