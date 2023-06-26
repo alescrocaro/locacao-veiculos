@@ -1,3 +1,11 @@
+/** 
+ * Este codigo contém funções para criar, 
+ * ler, atualizar e excluir usuários, 
+ * além de obter informações de usuários específicos. 
+ * Essas funções são responsáveis por lidar com as operações 
+ * relacionadas aos usuários em um sistema.
+*/
+
 const connection = require('../service/user');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
