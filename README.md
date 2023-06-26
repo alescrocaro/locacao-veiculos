@@ -1,14 +1,23 @@
-# locacao-veiculos
+# Trabalho final de sistemas distribuídos: Locadora de Veículos
 
 ## Equipe
-Alexandre Aparecido Scrocaro Junior\
-Pedro Henrique Klayn
+Alexandre Aparecido Scrocaro Junior;
+Pedro Henrique Klayn.
 
+## Visão Geral
+O objetivo deste projeto é desenvolver uma locadora de veículos, proporcionando uma plataforma para dois tipos de usuários: a locadora e o locatário. Este sistema consiste em um cliente em React e um servidor Node, utilizando comunicação RESTful, onde as solicitações são feitas por meio de métodos HTTP e os dados são enviados e recebidos em formato JSON.
 
-## Proposta
-Será feito um cliente em React e um servidor Node, a comunicação será rest, ou seja, requests por meio de métodos HTTP e dados em formato JSON. Por hora, tivemos a ideia de fazer uma locadora de veículos, que terá um serviço de autenticação de usuários (locadores e locatários), CRUD de veículos (para locadores), Read de veículos para locatários e Locação de veículos (locatários fazem pedido de locação através da página do carro e locador tem a opção de aceitar ou rejeitar), tanto o locatário quanto o locador terão uma listagem de locações. Acreditamos que essas funcionalidades já irão gerar alguma complexidade, pelo pouco tempo de desenvolvimento que teremos.
+## Funcionalidades Principais
+- Autenticação de Usuários: O sistema oferece serviços de autenticação para locadores e locatários.
+- Notificações em Tempo Real: É implementado um sistema de notificações em tempo real para manter os usuários informados sobre o status de suas solicitações de aluguel.
+- CRUD de Veículos: Os locadores podem realizar as operações de criação, leitura, atualização e exclusão de veículos em sua lista de disponibilidade.
+- CRUD de Usuários: É possível realizar as operações de gerenciamento de usuários, como criar, visualizar, atualizar e excluir informações de perfil.
+- CRUD de Pedidos de Aluguel: Os locatários podem criar pedidos de aluguel de veículos a partir de uma lista disponível na tela. Esses pedidos serão enviados em tempo real para a locadora, que pode aceitar ou recusar a solicitação. O locatário também recebe a resposta em tempo real.
+- Listagem de Veículos para Locatários: Os locatários têm acesso à lista de veículos disponíveis para locação.
+- Locação de Veículos: Os locatários podem fazer pedidos de locação através da página do veículo desejado, e os locadores têm a opção de aceitar ou rejeitar esses pedidos. Ambos os locatários e locadores possuem uma lista de locações para visualizar.
 
-
+## Observações
+Consideramos que essas funcionalidades já trarão uma certa complexidade ao projeto, considerando o curto prazo de desenvolvimento disponível.
 ## Tecnologias
 ### Front
 - [React](https://react.dev/): framework consolidado para desenvolvimento web.
