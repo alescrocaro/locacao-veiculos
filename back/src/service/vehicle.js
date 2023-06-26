@@ -1,3 +1,11 @@
+/**
+    createVehicle é responsável por inserir um novo veículo na tabela "VEHICLE" e retorna os dados do veículo inserido.
+    getVehicles recupera todos os veículos existentes na tabela "VEHICLE" e retorna os dados de todos os veículos.
+    updateVehicle atualiza as informações de um veículo específico na tabela "VEHICLE", com base no ID fornecido, e retorna os dados do veículo atualizado.
+    deleteVehicle exclui um veículo específico da tabela "VEHICLE", com base no ID fornecido.
+    findVehicleById busca um veículo específico na tabela "VEHICLE" com base no ID fornecido e retorna os dados do veículo encontrado.
+*/
+
 require('dotenv').config();
 
 const { createClient } = require('@supabase/supabase-js');
