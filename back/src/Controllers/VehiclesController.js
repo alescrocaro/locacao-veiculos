@@ -1,3 +1,10 @@
+/** 
+ * trecho de código implementa funções para criar, ler, 
+ * atualizar e excluir veículos, além de obter informações 
+ * de veículos específicos. Essas funções são responsáveis 
+ * por lidar com as operações relacionadas aos veículos do sistema.
+*/
+
 const connection = require('../service/vehicle');
 const { v4: uuidv4 } = require('uuid');
 
