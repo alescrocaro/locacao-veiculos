@@ -1,3 +1,11 @@
+/** 
+ * Este codigo implementa um middleware 
+ * de autenticação que verifica se o token de 
+ * autenticação fornecido é válido e não expirou. 
+ * Ele é usado para proteger rotas que exigem autenticação, 
+ * garantindo que apenas usuários autenticados possam acessá-las.
+*/
+
 require('dotenv').config();
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
