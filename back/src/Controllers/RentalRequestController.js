@@ -1,3 +1,10 @@
+/** 
+ * Este codigo gerencia as operações 
+ * relacionadas às solicitações de aluguel, 
+ * garantindo que os dados sejam válidos e 
+ * atualizando o status conforme necessário.
+*/
+
 const { v4: uuidv4 } = require('uuid');
 
 const connection = require('../service/rentalRequest');
