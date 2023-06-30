@@ -9,7 +9,7 @@ O objetivo deste projeto é desenvolver uma locadora de veículos, proporcionand
 
 ## Funcionalidades Principais
 - Autenticação de Usuários: O sistema oferece serviços de autenticação para locadores e locatários.
-- Notificações em Tempo Real: É implementado um sistema de notificações em tempo real para manter os usuários informados sobre o status de suas solicitações de aluguel.
+- Notificações em Tempo Real: É implementado um sistema de notificações em tempo real para manter os usuários informados sobre o status de suas solicitações de aluguel. Os usuários vão simular listeners, observando mudanças em uma informação específica do banco de dados.
 - CRUD de Veículos: Os locadores podem realizar as operações de criação, leitura, atualização e exclusão de veículos em sua lista de disponibilidade.
 - CRUD de Usuários: É possível realizar as operações de gerenciamento de usuários, como criar, visualizar, atualizar e excluir informações de perfil.
 - CRUD de Pedidos de Aluguel: Os locatários podem criar pedidos de aluguel de veículos a partir de uma lista disponível na tela. Esses pedidos serão enviados em tempo real para a locadora, que pode aceitar ou recusar a solicitação. O locatário também recebe a resposta em tempo real.
@@ -31,7 +31,7 @@ Consideramos que essas funcionalidades já trarão uma certa complexidade ao pro
 - [Supabase](https://supabase.com/): Escolhemos este banco de dados por ser uma plataforma projetada para ser escalável. Além disso, pretendemos fazer um serviço de notificações para fazer push notifications ao ser feito/aceito um pedido de locação.
 
 ### Documentação
-- [Swagger](https://swagger.io): Escolhemos esta documentação para nos auxiliar na descrição, consumo, visualização de serviços e funcionalidades de nosso trabalho.
+- [Swagger](https://swagger.io): Escolhemos esta ferramenta para nos auxiliar na descrição, visualização de serviços e funcionalidades de nosso trabalho.
 <!-- 
 ### Aula 30/05 - 21h20 a 23h
 Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele 
