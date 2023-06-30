@@ -30,7 +30,8 @@ Consideramos que essas funcionalidades já trarão uma certa complexidade ao pro
 ### Banco de dados
 - [Supabase](https://supabase.com/): Escolhemos este banco de dados por ser uma plataforma projetada para ser escalável. Além disso, pretendemos fazer um serviço de notificações para fazer push notifications ao ser feito/aceito um pedido de locação.
 
-
+### Documentação
+- [Swagger](https://swagger.io): Escolhemos esta documentação para nos auxiliar na descrição, consumo, visualização de serviços e funcionalidades de nosso trabalho.
 <!-- 
 ### Aula 30/05 - 21h20 a 23h
 Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele 
