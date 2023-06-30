@@ -3,7 +3,7 @@
  * ler, atualizar e excluir usuários, 
  * além de obter informações de usuários específicos. 
  * Essas funções são responsáveis por lidar com as operações 
- * relacionadas aos usuários em um sistema.
+ * relacionadas aos usuários do sistema.
 */
 
 const connection = require('../service/user');
@@ -31,7 +31,6 @@ async function createUser(req, res, next) {
       return;
     }
 
-    console.log('antes oldUser');
     const { data: oldUsers } = await connection.findUserByFilters(['document_number','email'], userData.document_number);
     const oldUser = oldUsers ? oldUsers[0] : null;
     console.log(oldUser);

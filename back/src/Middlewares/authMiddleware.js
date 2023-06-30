@@ -1,5 +1,5 @@
 /** 
- * Este codigo implementa um middleware 
+ * Este código implementa um middleware 
  * de autenticação que verifica se o token de 
  * autenticação fornecido é válido e não expirou. 
  * Ele é usado para proteger rotas que exigem autenticação, 
@@ -28,8 +28,6 @@ const AuthMiddleware = async (req, res, next) => {
     try {
         try {
             const decoded = await promisify(jwt.verify)(serializedToken, authConfig.secret);
-            console.log(typeof serializedToken)
-            console.log(typeof authConfig.secret)
 
             if(!decoded) {
                 const error = new Error();

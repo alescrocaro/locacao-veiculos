@@ -32,6 +32,16 @@ Consideramos que essas funcionalidades já trarão uma certa complexidade ao pro
 
 ### Documentação
 - [Swagger](https://swagger.io): Escolhemos esta ferramenta para nos auxiliar na descrição, visualização de serviços e funcionalidades de nosso trabalho.
+
+## Arquitetura do backend
+- Services:
+Conecta o backend com o banco de dados 
+- Controllers: 
+Lida com os requests do frontend
+- Middleware:
+Utilizado para autenticar o token recebido
+- Routes:
+Contem todas as rotas do sistema
 <!-- 
 ### Aula 30/05 - 21h20 a 23h
 Iremos estudar como é feita a utilização do supabase, verificar se é possível utilizar apenas supabase ao invés de utilizar postgres junto, verificar e estudar como é feita a conexão do supabase e se é possível utilizá-lo em nuvem, se não for será feita uma configuração de teste dele 

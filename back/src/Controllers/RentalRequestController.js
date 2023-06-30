@@ -4,7 +4,7 @@
  * garantindo que os dados sejam válidos e 
  * atualizando o status conforme necessário.
 */
-
+// A biblioteca uuid é utilizada para gerar os ids das informações criadas
 const { v4: uuidv4 } = require('uuid');
 
 const connection = require('../service/rentalRequest');

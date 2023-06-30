@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const server = express();
 server.use(express.json());
-server.use(cors({ origin: 'http://localhost:3000' }))
+server.use(cors({ origin: 'http://localhost:3000' })); // O servidor aceita requests da propria maquina  que vem da porta 3000
 server.use(routes);
 
 // 404 - captures any route that does not match with one of routes file ./routes.js

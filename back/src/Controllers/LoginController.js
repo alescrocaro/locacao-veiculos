@@ -10,8 +10,6 @@ const jwt = require('jsonwebtoken');
 const connection = require('../service/user');
 const authConfig = require('../config/auth');
 
-const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(process.env.SUPABASEURL, process.env.SUPABASEKEY);
 
 async function login (req, res, next) {
     const { email, password } = req.body;
