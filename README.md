@@ -22,6 +22,7 @@ Consideramos que essas funcionalidades já trarão uma certa complexidade ao pro
 ### Front
 - [React](https://react.dev/): framework consolidado para desenvolvimento web.
 - [Ant design](https://ant.design/): biblioteca para auxiliar no desenvolvimento com componentes prontos.
+- [Axios](https://axios-http.com/): cliente HTTP baseado em Promises para fazer chamadas a API.
 
 ### Back
 - [Node.js](https://nodejs.org/): Ótimo para um ambiente escalável, traz maior produtividade e leveza.

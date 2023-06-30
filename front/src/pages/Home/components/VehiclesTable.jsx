@@ -54,12 +54,6 @@ const VehiclesTable = ({ vehicles, setRentalRequests, loading }) => {
           }} 
           disabled={!available}
           size='small'
-          onClick={() => {
-            if (user.type === 'LESSEE') {
-              // setRentalRequestVehicleId(record.id);
-              // setIsRentalRequestModalVisible(true);
-            }
-          }}
         >
           {available 
             ? 

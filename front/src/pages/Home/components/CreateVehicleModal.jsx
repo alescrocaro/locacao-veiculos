@@ -12,6 +12,7 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
     return await api.post('/vehicles', data);
   }
 
+  // Função para enviar requisição ao backend
   const handleSubmit = () => {
     const values = form.getFieldsValue();
     values['lessor_id'] = user.id;
@@ -37,7 +38,6 @@ const CreateVehicleModal = ({ isVisible, setIsVisible, setVehicles }) => {
       .finally(() => {
         setIsLoading(false);
       })
-    // handleLogin(values.email, values.password);
   }
 
   const handleClose = () => {

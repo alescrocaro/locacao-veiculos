@@ -36,7 +36,6 @@ const Home = () => {
 
 	useEffect(() => {
 		setRentalRequests(rentalRequestsRT);
-		console.log('setting...')
 	}, [rentalRequestsRT]);
 
 
@@ -61,24 +60,6 @@ const Home = () => {
         notification.info({
           message: 'Rental request accepted'
         })
-      } else if (
-        payload?.eventType === 'DELETE'
-      ) {
-        // const userRequesterId = rentalRequestsRT?.map(request => {
-        //   if (request.id === payload.old.id) {
-        //     console.log('returned', request.lessee_id)
-        //     return request.lessee_id;
-        //   }
-        // }).filter(val => val)[0];
-				// console.log(userRequesterId)
-        // reexecute();
-          // .then(() => {
-          //   if (user.id === userRequesterId){
-          //     notification.info({
-          //       message: 'Rental request rejected'
-          //     })
-          //   }
-          // })
       } if (
         payload?.eventType === 'INSERT' && 
         user.id === payload.new.lessor_id

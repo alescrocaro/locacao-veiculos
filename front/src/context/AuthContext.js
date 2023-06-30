@@ -1,3 +1,11 @@
+/** 
+ * Este código cria um contexto com informações a respeito do usuário
+ * e sua autenticação, que podem ser utilizadas em todo o sistema. 
+ * O token é armazenado no localStorage do navegador com intuito de 
+ * ser utilizado em qualquer arquivo do sistema, assim pode ser
+ * acessado mais facilmente no momento das requisições.
+*/
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
@@ -12,6 +20,8 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Recupera a sessão do usuário, se o token estiver válido, sem necessidade
+  // de fazer login novamente.
   useEffect(() => {
     const token = localStorage.getItem('token');
 
